@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipo De Cambio por Pais</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <header>
+        <h1 class="title">Tipo de Cambio de Monedas</h1>
+    </header>
+    <main>
+        <form>
+            <div class="form-group">
+                <label for="countries" class="label">Selecciona un país:</label>
+                <select name="countries" id="countries" class="select">
+                    <option value="">Elige tu país...</option>
+                </select>
+            </div>
+            <button id="btnExchange" class="button">Obtener Tipo de Cambio</button>
+        </form>
+        <section class="results">
+            <h2 class="section-title">Resultados:</h2>
+            <div id="result" class="result-container"></div>
+        </section>
+    </main>
+
+
+</body>
+<script src="./app.js"></script>
+
+</html>
