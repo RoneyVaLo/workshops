@@ -8,14 +8,16 @@ let currency = countriesSelect.value;
 
 const completed = (e) => {
     const data = JSON.parse(e.target.responseText);
+    const USDcurrencyValue = (1 / (data.usd)).toFixed(2);
+    const EURcurrencyValue = (1 / (data.eur)).toFixed(2);
     result.innerHTML = `
         <p class="result-paragraph">
             <span class="currency-name">Dolar (USD):</span>
-            <span class="currency-value">${(data.usd).toFixed(2)}</span>
+            <span class="currency-value">${USDcurrencyValue}</span>
         </p>
         <p class="result-paragraph">
             <span class="currency-name">Euro (EUR):</span>
-            <span class="currency-value">${(data.eur).toFixed(2)}</span>
+            <span class="currency-value">${EURcurrencyValue}</span>
         </p>
     `;
     result.style.opacity = 1;
@@ -47,9 +49,12 @@ ajaxRequest.addEventListener("load", (e) => {
 
     const countries = JSON.parse(e.target.responseText);
     let optionsHtml = "";
-    countries.forEach(country => {
-        optionsHtml += `<option value="${country.currency}">${country.name}</option>`;
-    });
+    console.log(countries);
+    countries
+        .sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
+        .forEach(country => {
+            optionsHtml += `<option value="${country.currency}">${country.name}</option>`;
+        });
     countriesSelect.innerHTML += optionsHtml;
 });
 ajaxRequest.addEventListener("error", () => { });
