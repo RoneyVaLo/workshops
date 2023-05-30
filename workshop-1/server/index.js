@@ -23,11 +23,10 @@ app.get('/tipocambio/:currency', async function (req, res) {
     let exchange = { usd: 0, eur: 0 };
 
     try {
-        const responseUSD = await axios.get(`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd/${currency.toLowerCase()}.json`);
-        const responseEUR = await axios.get(`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/eur/${currency.toLowerCase()}.json`);
+        const countryExchangeRates = await axios.get(`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${currency.toLowerCase()}.json`);
         
-        exchange.usd = responseUSD.data[currency.toLowerCase()];
-        exchange.eur = responseEUR.data[currency.toLowerCase()];
+        exchange.usd = countryExchangeRates.data[currency.toLowerCase()].usd;
+        exchange.eur = countryExchangeRates.data[currency.toLowerCase()].eur;
 
         res.send(exchange);
     } catch (error) {
